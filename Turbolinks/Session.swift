@@ -56,7 +56,7 @@ open class Session: NSObject {
         return topmostVisit?.visitable
     }
 
-    open func visit(_ visitable: Visitable) {
+    @objc open func visit(_ visitable: Visitable) {
         visitVisitable(visitable, action: .Advance)
     }
 
