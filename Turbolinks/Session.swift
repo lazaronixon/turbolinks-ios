@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
 
-public protocol SessionDelegate: class {
+@objc public protocol SessionDelegate: class {
     func session(_ session: Session, didProposeVisitToURL URL: URL, withAction action: Action)
     func session(_ session: Session, didFailRequestForVisitable visitable: Visitable, withError error: NSError)
     func session(_ session: Session, openExternalURL URL: URL)
@@ -27,7 +27,7 @@ public extension SessionDelegate {
 }
 
 open class Session: NSObject {
-    open weak var delegate: SessionDelegate?
+    @objc open weak var delegate: SessionDelegate?
 
     open var webView: WKWebView {
         return _webView

@@ -41,7 +41,7 @@ class ScriptMessage {
 
     var action: Action? {
         if let actionString = data["action"] as? String {
-            return Action(rawValue: actionString)
+            return Action.enumFromString(action: actionString);
         }
         
         return nil
