@@ -1,7 +1,17 @@
 import UIKit
 import WebKit
 
+#if OBJECTIVEC
 @objc public protocol SessionDelegate: class {
+    func session(_ session: Session, didProposeVisitToURL URL: URL, withAction action: Action)
+    func session(_ session: Session, didFailRequestForVisitable visitable: Visitable, withError error: NSError)
+    func session(_ session: Session, openExternalURL URL: URL)
+    func sessionDidLoadWebView(_ session: Session)
+    func sessionDidStartRequest(_ session: Session)
+    func sessionDidFinishRequest(_ session: Session)
+}
+#else
+public protocol SessionDelegate: class {
     func session(_ session: Session, didProposeVisitToURL URL: URL, withAction action: Action)
     func session(_ session: Session, didFailRequestForVisitable visitable: Visitable, withError error: NSError)
     func session(_ session: Session, openExternalURL URL: URL)
@@ -25,9 +35,14 @@ public extension SessionDelegate {
     func sessionDidFinishRequest(_ session: Session) {
     }
 }
+#endif
 
 open class Session: NSObject {
+#if OBJECTIVEC
     @objc open weak var delegate: SessionDelegate?
+#else
+    open weak var delegate: SessionDelegate?
+#endif
 
     open var webView: WKWebView {
         return _webView
