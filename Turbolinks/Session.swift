@@ -44,7 +44,7 @@ open class Session: NSObject {
     open weak var delegate: SessionDelegate?
 #endif
 
-    open var webView: WKWebView {
+    @objc open var webView: WKWebView {
         return _webView
     }
 
