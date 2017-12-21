@@ -5,7 +5,7 @@ open class VisitableViewController: UIViewController, Visitable {
 
     open var visitableURL: URL!
 
-    public convenience init(url: URL) {
+    @objc public convenience init(url: URL) {
         self.init()
         self.visitableURL = url
     }
